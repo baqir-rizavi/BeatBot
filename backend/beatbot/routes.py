@@ -1,4 +1,5 @@
 import os
+import re
 import beatbot.utils as utils
 from flask import request
 from flask_login import login_user
