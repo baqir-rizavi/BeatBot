@@ -8,6 +8,7 @@ import glob
 
 def save_image(pic_link, user_path):
     fname = secrets.token_hex(8)
+    fname += ".jpg"
     pic_path = os.path.join(user_path, fname)
     urllib.request.urlretrieve(pic_link, pic_path)
     fixed_height = 256

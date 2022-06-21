@@ -9,21 +9,29 @@ export default function Form({ surname, mainButton }) {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ "username": username, "password": password, "remember_me": 1})
+    body: JSON.stringify({ "username": username, "password": password, "remember_me": 0})
   };
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setUsername(e.target.elements.username.value);
-    setPassword(e.target.elements.password.value);
-    console.log(username);
-    fetch("/login", requestOptions).then(
-      result => result.json()
-    ).then(
-      data => {
-        console.log(data)
-      }
-    )
+    if (username != "" && password != "")
+    { 
+      fetch("/login", requestOptions).then(
+        result => result.json()
+      ).then(
+          data => {
+            console.log(data);
+          }
+      )
+    }
+  };
+
+  const onUser = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const onPass = (e) => {
+    setPassword(e.target.value);
   };
 
   // useEffect(() => {
@@ -38,11 +46,11 @@ export default function Form({ surname, mainButton }) {
     <form onSubmit={handleSubmit} method='POST'>
             <h3>{surname}</h3>
     
-            <label for="username">Username</label>
-            <input type="text" placeholder="Email or Phone" id="username"/>
+            <label htmlFor="username">Username</label>
+            <input type="text" placeholder="username" value={username} onChange={onUser} id="username" required/>
     
-            <label for="password">Password</label>
-            <input type="password" placeholder="Password" id="password"/>
+            <label htmlFor="password">Password</label>
+            <input type="password" placeholder="Password" value={password} onChange={onPass} id="password" required/>
     
             <button type="submit">{mainButton}</button>
             <div className="social">

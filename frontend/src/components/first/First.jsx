@@ -48,7 +48,7 @@ export default function First() {
                     </div>
                 </div>
 
-                {loginClicked && <Form className="form" surname="Baqir Form" mainButton="Log In" passwordValue="loginPassword" usernameValue="loginUsername" />}
+                {loginClicked && <Form className="form" surname="Login Form" mainButton="Log In" passwordValue="loginPassword" usernameValue="loginUsername" />}
                 {signupClicked && <Form className="form" surname="SignUp Form" mainButton="Sign Up" />}
 
             </div>
