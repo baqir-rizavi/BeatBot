@@ -14,9 +14,21 @@ class User(db.Model, UserMixin):
     user_last_name = db.Column('user_last_name', db.String(40), nullable=False)
     user_email = db.Column('user_email', db.String(40), unique=True, nullable=False)
     user_profile_pic = db.Column('user_profile_pic', db.String(40), nullable=False,
-                                   default=os.path.join(ppath, 'static', 'default.png'))
+                                   default=os.path.join(ppath, 'static', 'default.jpg'))
     playlists = db.relationship('Playlist',backref= 'user')
     albums = db.relationship('Album',backref= 'user')
+    
+    def __init__(self, username, password, fname, lname, email, profile_pic=None):
+        self.user_username = username
+        self.user_password = password
+        self.user_first_name = fname
+        self.user_last_name = lname
+        self.user_email = email
+        if profile_pic:
+            self.user_profile_pic = profile_pic
+
+    def get_password(self):
+        return self.user_password
 
 class Playlist(db.Model):
     id = db.Column('playlist_id', db.Integer, primary_key=True)
@@ -43,15 +55,3 @@ class Album(db.Model):
     name = db.Column('name', db.String(40), nullable=False)
     al_user_id = db.Column('al_user_id', db.Integer, ForeignKey('user.id'))
     music_files = db.relationship('Music_File',backref= 'album')
-
-    def __init__(self, username, password, fname, lname, email, profile_pic=None):
-        self.user_username = username
-        self.user_password = password
-        self.user_first_name = fname
-        self.user_last_name = lname
-        self.user_email = email
-        if profile_pic:
-            self.user_profile_pic = profile_pic
-
-    def get_password(self):
-        return self.user_password
