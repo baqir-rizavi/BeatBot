@@ -31,15 +31,15 @@ class User(db.Model, UserMixin):
         return self.user_password
 
 class Playlist(db.Model):
-    id = db.Column('playlist_id', db.Integer, primary_key=True)
+    playlist_id = db.Column('playlist_id', db.Integer, primary_key=True)
     playlist_name = db.Column('playlist_name', db.String(40), nullable=False)
     playlist_file_count = db.Column('playlist_file_count', db.Integer, nullable=False)
-    pl_user_id = db.Column('pl_user_id', db.Integer, ForeignKey('user.id'))
+    pl_user_id = db.Column('pl_user_id', db.Integer, ForeignKey('user.user_id'))
     playlist_records = db.relationship('Playlist_Record',backref= 'playlist')
 
 class Playlist_Record(db.Model):
-    playlist_id = db.Column('playlist_id', db.Integer,ForeignKey('playlist.id'), primary_key=True)
-    music_file_id = db.Column('music_file_id', db.Integer,ForeignKey('music_file.id'), primary_key=True)
+    playlist_id = db.Column('playlist_id', db.Integer, ForeignKey('playlist.playlist_id'), primary_key=True)
+    music_file_id = db.Column('music_file_id', db.Integer, ForeignKey('music_file.music_file_id'), primary_key=True)
     inserted_date = db.Column('inserted_date', db.Date, nullable=False)
 
 class Music_File(db.Model):
@@ -47,11 +47,11 @@ class Music_File(db.Model):
     file_path = db.Column('file_path', db.String(40), nullable=False)
     thumbnail_path = db.Column('thumbnail_path', db.String(40), nullable=False)
     views = db.Column('views', db.Integer)
-    mf_album_id = db.Column('mf_album_id', db.Integer, ForeignKey('album.id'))
-    playlist_records = db.relationship('Playlist_Record',backref= 'music_file')
+    mf_album_id = db.Column('mf_album_id', db.Integer, ForeignKey('album.album_id'))
+    #playlist_records = db.relationship('Playlist_Record', backref= 'music_file')
 
 class Album(db.Model):
     album_id = db.Column('album_id', db.Integer, primary_key=True)
     name = db.Column('name', db.String(40), nullable=False)
-    al_user_id = db.Column('al_user_id', db.Integer, ForeignKey('user.id'))
-    music_files = db.relationship('Music_File',backref= 'album')
+    al_user_id = db.Column('al_user_id', db.Integer, ForeignKey('user.user_id'))
+    music_files = db.relationship('Music_File', backref= 'album')
