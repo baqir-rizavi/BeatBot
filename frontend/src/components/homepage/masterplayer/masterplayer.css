@@ -1,0 +1,17 @@
+
+.icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.master_play .icon{
+    font-size: 20px;
+    color: #fff;
+    /* margin: 0px 20px 0px 40px; */
+}
+.master_play .icon .bi{
+    cursor: pointer;
+    outline: none;
+    /* display: flex; */
+}
