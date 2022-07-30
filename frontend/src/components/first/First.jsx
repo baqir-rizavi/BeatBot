@@ -3,7 +3,7 @@ import './First.css'
 import Slider from '../Slider/Slider'
 import Button from '../Buttons/Buttons'
 import Form from '../form/Form'
-// import Buttons from '../Buttons/Buttons'
+import SignUpform from '../signoutform/signoutform'
 
 export default function First() {
 
@@ -49,7 +49,7 @@ export default function First() {
                 </div>
 
                 {loginClicked && <Form className="form" surname="Login Form" mainButton="Log In" passwordValue="loginPassword" usernameValue="loginUsername" />}
-                {signupClicked && <Form className="form" surname="SignUp Form" mainButton="Sign Up" />}
+                {signupClicked && <SignUpform />}
 
             </div>
         </div>

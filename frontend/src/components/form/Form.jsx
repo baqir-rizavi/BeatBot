@@ -1,8 +1,10 @@
-import React, {useState, useEffect} from 'react'
-import './Form.css'
+import React, {useState, useEffect} from 'react';
+// import { useHistory } from 'react-router-dom';
+import './Form.css';
+import { useNavigate } from 'react-router-dom';
 
-export default function Form({ surname, mainButton }) {
-  
+export default function Form({ surname, mainButton, valid }) {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   
@@ -16,13 +18,20 @@ export default function Form({ surname, mainButton }) {
     e.preventDefault();
     if (username != "" && password != "")
     { 
-      fetch("/login", requestOptions).then(
-        result => result.json()
-      ).then(
-          data => {
-            console.log(data);
-          }
-      )
+      try{
+        fetch("/login", requestOptions).then(
+          result => result.json()
+        ).then(
+            data => {
+              if(data.status == "logged_in"){
+                navigate('/homepage');
+              }
+            }
+        )
+      }
+      catch(err){
+        console.log(err);
+      }
     }
   };
 
@@ -34,16 +43,9 @@ export default function Form({ surname, mainButton }) {
     setPassword(e.target.value);
   };
 
-  // useEffect(() => {
-  //   if (username != "")
-  //   {
-      
-  //   }
-  // }, [])
-
   return (
     <>
-    <form onSubmit={handleSubmit} method='POST'>
+    <form onSubmit={handleSubmit} method='POST' id='loginfrom'>
             <h3>{surname}</h3>
     
             <label htmlFor="username">Username</label>

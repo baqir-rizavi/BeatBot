@@ -13,6 +13,11 @@ form{
     padding: 50px 35px;
     z-index: 10000;
 }
+
+#loginfrom{
+  overflow-y: hidden;
+}
+
 form *{
     font-family: 'Poppins',sans-serif;
     color: #ffffff;
