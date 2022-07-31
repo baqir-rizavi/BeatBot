@@ -1,9 +1,9 @@
 import os
 import re
 import beatbot.utils as utils
-from flask import request
-from flask_login import login_user
-from beatbot.models import User
+from flask import request, send_file
+from flask_login import login_user, current_user
+from beatbot.models import Playlist, User
 from beatbot import app, bcrypt, db, ppath
 
 
@@ -62,4 +62,8 @@ def logout():
 
 @app.route("/profile", methods=["POST"])
 def profile():
-    pass
+    if current_user:
+
+        return {"name": current_user.user_first_name}
+    else:
+        return {"name": "koi user ni mila pai jan"}
