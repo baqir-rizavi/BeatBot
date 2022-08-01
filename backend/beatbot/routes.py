@@ -3,9 +3,8 @@ import re
 import beatbot.utils as utils
 from flask import request, send_file
 from flask_login import login_user, current_user
-from beatbot.models import Playlist, User
+from beatbot.models import Playlist, User,Music_File
 from beatbot import app, bcrypt, db, ppath
-
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -67,3 +66,12 @@ def profile():
         return {"name": current_user.user_first_name}
     else:
         return {"name": "koi user ni mila pai jan"}
+
+@app.route('/get_song', methods=['POST'])
+def get_song():
+    details = request.json
+    song = Music_File.query.filter_by(music_file_id=details['id']).first()
+    if song:
+        return {"songPath": song.file_path}
+    else:
+        return {"songPath": "invalid_id", "code": "error"}
