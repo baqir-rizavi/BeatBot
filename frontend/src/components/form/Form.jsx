@@ -46,21 +46,16 @@ export default function Form({ surname, mainButton, valid }) {
   return (
     <>
     <form onSubmit={handleSubmit} method='POST' id='loginfrom'>
-            <h3>{surname}</h3>
-    
-            <label htmlFor="username">Username</label>
-            <input type="text" placeholder="username" value={username} onChange={onUser} id="username" required/>
-    
-            <label htmlFor="password">Password</label>
-            <input type="password" placeholder="Password" value={password} onChange={onPass} id="password" required/>
-    
-            <button type="submit">{mainButton}</button>
-            <div className="social">
-              <div className="go">  Google</div>
-              <div className="fb"> Facebook</div>
-            </div>
-            
-        </form>
+      <h3>{surname}</h3>
+      <label htmlFor="username">Username</label>
+      <input type="text" placeholder="username" value={username} onChange={onUser} id="username" required/>
+      <label htmlFor="password">Password</label>
+      <input type="password" placeholder="Password" value={password} onChange={onPass} id="password" required/>
+      <button type="submit">Login</button>
+      <div>
+        {/* <GoogleButton/> */}
+      </div>
+    </form>
     </>
   )
 }

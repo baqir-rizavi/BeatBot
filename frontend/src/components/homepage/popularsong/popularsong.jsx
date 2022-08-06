@@ -1,20 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import './popularsong.css'
 
-// this is an example json
-        // {    
-        //     'results':[ 
-        //         {   'id': 1,
-        //             'name':'On My Way',
-        //             'thumbnail':'/images/1.jpg',
-        //             'singer': 'Alan Walker'},
-        //         {   'id': 2,
-        //             'name':'Alone',
-        //             'thumbnail':'/images/2.jpg',
-        //             'singer': 'Alan Walker'}
-        //     ]
-        // }
-
 export default function popularsong() {
 
     const [songs, setSongs] = useState([ 
@@ -27,14 +13,13 @@ export default function popularsong() {
                                                 'thumbnail':'/images/2.jpg',
                                                 'singer': 'Alan Walker'}
                                         ]);
+    
     const [currentPage, setCurrentPage] = useState(1);
-
-
     
     async function getSongs(page) {
         
         let requestsongs = {
-            method: 'POST',
+            method: 'GET',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({'page': page})
         };
@@ -55,7 +40,7 @@ export default function popularsong() {
 
     async function getSongOnPlayer(event){
         let requestsong = {
-            method: 'POST',
+            method: 'GET',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({'id': event.currentTarget.id})
         };
