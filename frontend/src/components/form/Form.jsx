@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 // import { useHistory } from 'react-router-dom';
 import './Form.css';
+import GoogleButton from '../google/googleLogin';
 import { useNavigate } from 'react-router-dom';
 
 export default function Form({ surname, mainButton, valid }) {
@@ -53,7 +54,7 @@ export default function Form({ surname, mainButton, valid }) {
       <input type="password" placeholder="Password" value={password} onChange={onPass} id="password" required/>
       <button type="submit">Login</button>
       <div>
-        {/* <GoogleButton/> */}
+        <GoogleButton id="gbutton"/>
       </div>
     </form>
     </>

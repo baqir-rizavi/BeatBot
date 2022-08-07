@@ -12,7 +12,7 @@ import IconButton from '@mui/material/IconButton';
 export default function homepage() {
     
     const [profileData, setProfileData] = useState(null);
-    // profileData will be {"name": ..., "pic_src": ...}
+    // profileData will be {"name": ..., "pic_link": ...}
 
     const requestOptions = {
         method: 'POST',
@@ -29,7 +29,7 @@ export default function homepage() {
                 result => result.json()
             ).then(
                 data => {
-                    setProfileData(data);  
+                    setProfileData(data);
                 }
             )
     };
@@ -70,9 +70,10 @@ export default function homepage() {
                     </div>
                 }
                 {
+                profileData &&
                     <div className="user">
-                        {/* <img src={profileData.pic_src} alt="tera baap" title="Beat Bot" /> */}
-                        <img src='/images/1.jpg' alt="tera baap" title="Beat Bot" />
+                        <img src={profileData.pic_link} alt="tera baap" title="Beat Bot" />
+                        {/* <img src='/images/1.jpg' alt="tera baap" title="Beat Bot" /> */}
                     </div>
                 }
            </nav>

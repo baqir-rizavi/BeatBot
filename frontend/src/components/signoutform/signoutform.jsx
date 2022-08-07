@@ -1,7 +1,6 @@
 import { SettingsSystemDaydreamTwoTone } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import React, {useState, useEffect} from 'react'
-import GoogleButton from '../google/googleLogin';
 import './signoutform.css'
 
 export default function signoutform({ surname, mainButton }) {
@@ -69,7 +68,6 @@ export default function signoutform({ surname, mainButton }) {
             <input type="email" placeholder="Email" value={email} onChange={onEmail} id="email" required/>
 
             <button type="submit">Submit</button>
-            <GoogleButton/>
         </form>
     </div>
   )
