@@ -21,3 +21,7 @@ def save_image(pic_link, user_path):
     image.close()
     os.remove(pic_path)
     return rpicpath
+
+def get_random_string():
+    return secrets.token_hex(8)
+

@@ -1,3 +1,4 @@
+from crypt import methods
 import os
 import re
 import beatbot.utils as utils
@@ -21,13 +22,19 @@ def login():
 @app.route('/login_with_google', methods=['POST'])
 def login_with_google():
     acc = request.json
-    user = User.query.filter_by(user_username=acc['email']).first()
+    user = User.query.filter_by(user_email=acc['email']).first()
     if user:
-        login_user(user, remember=acc['remember_me'])
+        login_user(user, remember=False)
         return {"status": "logged_in", "code": "ok"}
     else:
-        return {"status": "invalid_user", "code": "error"}
-
+        random_username = utils.get_random_string()
+        random_password = utils.get_random_string()
+        encrypted_password = bcrypt.generate_password_hash(random_password).decode("UTF-8")
+        u = User(random_username, encrypted_password, acc['name'], acc['email'], profile_pic=acc["pic_link"])
+        db.session.add(u)
+        db.session.commit()
+        login_user(u, remember=False)
+        return {"status": "account created", "code": "ok"}
 
 @app.route("/signup", methods=["POST"])
 def signup():
@@ -56,10 +63,10 @@ def logout():
 @app.route("/profile", methods=["POST"])
 def profile():
     if current_user:
-
-        return {"name": current_user.user_name}
-    else:
-        return {"name": "Error no user exit yet page loaded"}
+        print("this is link:" , current_user.user_profile_pic)
+        print(current_user.user_profile_pic)
+        print(current_user.user_profile_pic)
+        return {"name": current_user.user_name, "pic_link": current_user.user_profile_pic}
 
 @app.route('/get_song', methods=['GET'])
 def get_song():
