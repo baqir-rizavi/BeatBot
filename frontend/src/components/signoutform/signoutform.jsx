@@ -1,4 +1,7 @@
+import { SettingsSystemDaydreamTwoTone } from '@mui/icons-material';
+import { Button } from '@mui/material';
 import React, {useState, useEffect} from 'react'
+import GoogleButton from '../google/googleLogin';
 import './signoutform.css'
 
 export default function signoutform({ surname, mainButton }) {
@@ -6,18 +9,17 @@ export default function signoutform({ surname, mainButton }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [dateofbirth, setdateofbirth] = useState("");
-  const [phone, setPhone] = useState("");
+  const [name, setName] = useState("");
   
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ "username": username, "password": password, "email": email, "phone": phone})
+    body: JSON.stringify({ "name": name, "username": username, "password": password, "email": email})
   };
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (username != "" && password != "" && email != "" && phone != "" )
+    if (username != "" && password != "" && email != "" && name != "")
     { 
       fetch("/signup", requestOptions).then(
         result => result.json()
@@ -45,8 +47,12 @@ export default function signoutform({ surname, mainButton }) {
     setPhone(e.target.value);
   };
 
+  const onName = (e) => {
+    setName(e.target.value);
+  };
+
   return (
-    <>
+    <div>
     <form onSubmit={handleSubmit} method='POST'>
             <h3>SignUp Form</h3>
     
@@ -56,20 +62,16 @@ export default function signoutform({ surname, mainButton }) {
             <label htmlFor="password">Password</label>
             <input type="password" placeholder="Password" value={password} onChange={onPass} id="password" required/>
     
+            <label htmlFor="name">Name</label>
+            <input type="name" placeholder="Name" value={name} onChange={onName} id="name" required/>
+
             <label htmlFor="email">Email</label>
             <input type="email" placeholder="Email" value={email} onChange={onEmail} id="email" required/>
 
-            <label htmlFor="phone">Phone</label>
-            <input type="text" placeholder="Phone" value={phone} onChange={onPhone} id="phone" required/>
-
-            <button type="submit">Submitt</button>
-            <div className="social">
-              <div className="go">  Google</div>
-              <div className="fb"> Facebook</div>
-            </div>
-            
+            <button type="submit">Submit</button>
+            <GoogleButton/>
         </form>
-    </>
+    </div>
   )
 }
 
