@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './homepage.css'
 // import {playlist} from './dummydata';
+
 import Playlist from './Playlist/Playlist'
 import Popularsong from './popularsong/popularsong'
 import MasterPlayer from './masterplayer/masterplayer'
@@ -95,10 +96,20 @@ export default function homepage() {
                     <i className="bi bi-search"></i>
                     <input type="text" placeholder="Search Music........" />
                 </div>
-                <div className="user">
-                    <img src="/images/slider_2.jpg" alt="slider_2" title="Beat Bot" />
-                </div>
-            </nav>
+                { 
+                profileData &&
+                    <div>
+                        <h2>{profileData.name}</h2>
+                    </div>
+                }
+                {
+                profileData &&
+                    <div className="user">
+                        <img src={profileData.pic_link} alt="tera baap" title="Beat Bot" />
+                        {/* <img src='/images/1.jpg' alt="tera baap" title="Beat Bot" /> */}
+                    </div>
+                }
+           </nav>
             <div className="content">
                 <h1>Your Music Partner</h1>
                 <p>
