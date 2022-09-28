@@ -2,6 +2,7 @@
   "name": "beat.bot",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5000/",
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
@@ -10,10 +11,11 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
-    "Buffer": "0.0.0",
     "buffer": "^6.0.3",
+    "Buffer": "0.0.0",
     "firebase": "^9.9.1",
     "gapi-script": "^1.2.0",
+    "lottie-web": "^5.9.6",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-google-login": "^5.2.2",
@@ -28,6 +30,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  
   "browserslist": {
     "production": [
       ">0.2%",

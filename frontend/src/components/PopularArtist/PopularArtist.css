@@ -1,0 +1,66 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,200&display=swap');
+/* 
+
+#111727
+
+#131312
+
+*/
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.PopularArtist-container{
+    color:white;
+    background-color: #111727;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    font-family: 'Poppins', sans-serif;
+}
+
+.pa-upper-portion{
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.pa-upper-portion-title{
+    font-size: 50px !important;
+}
+
+.pa-navbar{
+    background-color: rgb(105,105,170,.1);
+}
+
+.pa-navbar ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.pa-link{
+    text-decoration: none;
+}
+
+.pa-navbar ul li{
+    color: white;
+    margin: 20px;
+    text-decoration: none;
+    font-size: 20px;
+    list-style: none;
+}
+
+.pa-artist-cards-container{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 40px;
+    justify-content: space-around;
+}

@@ -1,4 +1,3 @@
-from crypt import methods
 import os
 import re
 import beatbot.utils as utils
@@ -57,7 +56,7 @@ def signup():
 
 @app.route("/logout", methods=["POST"])
 def logout():
-    # TODO: make the damn logout logic you dumbass! 
+    # TODO
     pass
 
 @app.route("/profile", methods=["POST"])
@@ -68,23 +67,33 @@ def profile():
         print(current_user.user_profile_pic)
         return {"name": current_user.user_name, "pic_link": current_user.user_profile_pic}
 
+@app.route("/recomended_songs", methods=["GET"])
+def rsongs():
+    popular_songs = Music_File.query.all()
+    return_format_popular_songs = []
+    for song in popular_songs:
+        return_format_popular_songs.append({"id": song.sid, "n":song.n,
+                    "path": song.path, "songName": song.songName, "singerName": song.singerName, "musicSrc":song.musicSrc})
+        print(song)
+    return { "results": return_format_popular_songs}
+
 @app.route('/get_song', methods=['GET'])
 def get_song():
     details = request.json
-    song = Music_File.query.filter_by(music_file_id=details['id']).first()
+    song = Music_File.query.filter_by(sid=details['sid']).first()
     if song:
         song.views += 1
         db.session.commit()
-        return {"songPath": song.file_path}
+        return {"songPath": song.path}
     else:
         return {"songPath": "invalid_id", "code": "error"}
 
 @app.route("/popular_songs", methods=["GET"])
-def popular_songs():
-    page = request.json['page']
-    popular_songs = Music_File.query.order_by(Music_File.views).offset((page-1) * 20).limit(20).all()
+def psongs():
+    popular_songs = Music_File.query.all()
     return_format_popular_songs = []
     for song in popular_songs:
-        return_format_popular_songs.append({"id": song.music_file_id, 
-                    "name": song.name, "thumbnail": song.thumbnail_path, "singer": song.singer})
+        return_format_popular_songs.append({"id": song.sid, "n":song.n,
+                    "path": song.path, "songName": song.sname, "singerName": song.singerName, "musicSrc":song.musicSrc})
     return { "results": return_format_popular_songs}
+

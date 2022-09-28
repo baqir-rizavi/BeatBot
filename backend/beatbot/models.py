@@ -6,7 +6,7 @@ from beatbot import db, ppath
 from flask_login import UserMixin
 
 
-default_pic_link = ""
+default_pic_link = "/images/1.jpg"
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -40,19 +40,21 @@ class Playlist(db.Model):
 class Playlist_Record(db.Model):
     __tablename__ = 'playlist_records'
     playlist_id = db.Column('playlist_id', db.Integer, ForeignKey('playlists.playlist_id'), primary_key=True)
-    music_file_id = db.Column('music_file_id', db.Integer, ForeignKey('music_files.music_file_id'), primary_key=True)
+    music_file_id = db.Column('mf_id', db.Integer, ForeignKey('music_files.mf_id'), primary_key=True)
     inserted_date = db.Column('inserted_date', db.Date, nullable=False)
     playlist = db.relationship('Playlist',backref = backref("playlist_records", cascade="all, delete-orphan"))
     music_file = db.relationship('Music_File',backref = backref("playlist_records", cascade="all, delete-orphan"))
 
 class Music_File(db.Model):
     __tablename__ = 'music_files'
-    name = db.Column('name', db.String(200), nullable=False)
-    music_file_id = db.Column('music_file_id', db.Integer, primary_key=True)
-    file_path = db.Column('file_path', db.String(200), nullable=False)
-    thumbnail_path = db.Column('thumbnail_path', db.String(200), nullable=False)
+    id = db.Column('mf_id', db.Integer, primary_key=True)
+    sid = db.Column('sid', db.Integer)
+    n = db.Column('n', db.Integer)
+    path = db.Column('path', db.String(200), nullable=False)
+    songName = db.Column('songName', db.String(200), nullable=False)
     views = db.Column('views', db.Integer, default=0)
-    singer = db.Column('singer', db.String(100), nullable=False)
+    singerName = db.Column('singerName', db.String(200), nullable=False)
+    musicSrc = db.Column('musicSrc', db.String(200), nullable=False)
     playlists = db.relationship('Playlist', secondary = 'playlist_records')
 
 # class Album(db.Model):

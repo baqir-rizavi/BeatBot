@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,200&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+h1{
+    background: var(--gradient-bar); 
+    background-clip: text;
+    color: transparent;
+}
+.AboutUs-container{
+    color:white;
+    background-color: #111727;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    font-family: 'Poppins', sans-serif;
+}
+
+.au-upper-portion{
+    height: 10vh;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    margin-top: 10px;
+}
+
+.au-upper-portion-title{
+    font-size: 50px !important;
+}
+.au-navbar{
+    display: flex;
+    background-color: rgb(105,105,170,.1);
+}
+
+.au-navbar ul{
+    margin-left: 70rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.au-link{
+    text-decoration: none;
+}
+
+.au-navbar ul li{
+    color: white;
+    margin: 20px;
+    text-decoration: none;
+    font-size: 20px;
+    list-style: none;
+}
+
+.au-jour-head{
+    display: block;
+    font-weight: 900;
+    font-size: 6rem;
+    margin: 2rem 0 0 2rem;
+}
+.au-journey{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem 0 0 8rem;
+}
+
+.au-journey .au-journey-content{
+    width: 50%;
+    font-size: medium;
+    text-align: justify;
+}
+
+.au-cards-container{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 3rem 25rem 5rem;
+    justify-content: space-around;
+}
+
+.au-team{
+    display: block;
+    font-weight: 900;
+    font-size: 6rem;
+    margin: 2rem 0 0 2rem;
+}
